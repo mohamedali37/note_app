@@ -25,13 +25,13 @@ class CustomListTile extends StatelessWidget {
         ),
       ),
       trailing: IconButton(
-        onPressed: () {}, 
+        onPressed: () {},
         icon: const Icon(
           FontAwesomeIcons.trash,
           color: Colors.black,
           size: 26,
-          ),
         ),
+      ),
     );
   }
 }

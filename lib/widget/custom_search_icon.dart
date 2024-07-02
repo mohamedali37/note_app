@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class CustomSearchIcon extends StatelessWidget {
   const CustomSearchIcon({super.key});
 
