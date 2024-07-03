@@ -24,7 +24,7 @@ class _NoteBottomSheetState extends State<NoteBottomSheet> {
           autovalidateMode: autoValidateMode,
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 35,
               ),
               CustomTextField(
@@ -33,7 +33,7 @@ class _NoteBottomSheetState extends State<NoteBottomSheet> {
                 },
                 text: 'title',
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               CustomTextField(
@@ -43,21 +43,20 @@ class _NoteBottomSheetState extends State<NoteBottomSheet> {
                 text: 'content',
                 maxLines: 5,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 60,
               ),
               CustomButton(
                 onTap: () {
-                  if(formKey.currentState!.validate()) {
+                  if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
                   } else {
                     autoValidateMode = AutovalidateMode.always;
-                    setState(() {
-                      
-                    });
+                    setState(() {});
                   }
-              },),
-              SizedBox(
+                },
+              ),
+              const SizedBox(
                 height: 25,
               ),
             ],
