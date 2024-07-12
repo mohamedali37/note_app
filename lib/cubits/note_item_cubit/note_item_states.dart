@@ -12,7 +12,7 @@ class NoteSuccess extends NoteState {
   NoteSuccess({required this.noteList});
 }
 
-class NoteFailure {
+class NoteFailure extends NoteState{
   final String err;
 
   NoteFailure({required this.err});
