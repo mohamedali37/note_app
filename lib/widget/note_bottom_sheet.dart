@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:note_app/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:note_app/cubits/add_note_cubit/add_note_states.dart';
+import 'package:note_app/model/note_model.dart';
 import 'package:note_app/widget/custom_button.dart';
 import 'package:note_app/widget/custom_text_field.dart';
 
@@ -22,19 +23,19 @@ class _NoteBottomSheetState extends State<NoteBottomSheet> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: SingleChildScrollView(
-        child: BlocConsumer<AddNoteCubit, AddNoteState>(
-          listener: (context, state) {
-            if (state is AddNoteSuccess) {
-              Navigator.pop(context);
-            }
-            else if (state is AddNoteFailure) {
-              print('edweve');
-            }
-          },
-          builder: (context, state) {
-            return ModalProgressHUD(
-              inAsyncCall: state is AddNoteLoading ? true : false,
+      child: BlocConsumer<AddNoteCubit, AddNoteState>(
+        listener: (context, state) {
+          if (state is AddNoteSuccess) {
+            Navigator.pop(context);
+          }
+          else if (state is AddNoteFailure) {
+            print('edweve');
+          }
+        },
+        builder: (context, state) {
+          return ModalProgressHUD(
+            inAsyncCall: state is AddNoteLoading ? true : false,
+            child: SingleChildScrollView(
               child: Form(
                 key: formKey,
                 autovalidateMode: autoValidateMode,
@@ -66,6 +67,8 @@ class _NoteBottomSheetState extends State<NoteBottomSheet> {
                       onTap: () {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
+                          NoteModel noteModel = NoteModel(title: title!, subTitle: subTitle!, date: DateTime.now().toString(), color: Colors.black.value);
+                          BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
                         } else {
                           autoValidateMode = AutovalidateMode.always;
                           setState(() {});
@@ -78,9 +81,9 @@ class _NoteBottomSheetState extends State<NoteBottomSheet> {
                   ],
                 ),
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
