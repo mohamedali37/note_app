@@ -15,10 +15,7 @@ class NoteBottomSheet extends StatefulWidget {
 }
 
 class _NoteBottomSheetState extends State<NoteBottomSheet> {
-  final GlobalKey<FormState> formKey = GlobalKey();
-  AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
-
-  String? title, subTitle;
+  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,51 +33,7 @@ class _NoteBottomSheetState extends State<NoteBottomSheet> {
           return ModalProgressHUD(
             inAsyncCall: state is AddNoteLoading ? true : false,
             child: SingleChildScrollView(
-              child: Form(
-                key: formKey,
-                autovalidateMode: autoValidateMode,
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 35,
-                    ),
-                    CustomTextField(
-                      onSaved: (value) {
-                        title = value;
-                      },
-                      text: 'title',
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    CustomTextField(
-                      onSaved: (value) {
-                        subTitle = value;
-                      },
-                      text: 'content',
-                      maxLines: 5,
-                    ),
-                    const SizedBox(
-                      height: 60,
-                    ),
-                    CustomButton(
-                      onTap: () {
-                        if (formKey.currentState!.validate()) {
-                          formKey.currentState!.save();
-                          NoteModel noteModel = NoteModel(title: title!, subTitle: subTitle!, date: DateTime.now().toString(), color: Colors.black.value);
-                          BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-                        } else {
-                          autoValidateMode = AutovalidateMode.always;
-                          setState(() {});
-                        }
-                      },
-                    ),
-                    const SizedBox(
-                      height: 25,
-                    ),
-                  ],
-                ),
-              ),
+              child: 
             ),
           );
         },
