@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:note_app/cubits/note_item_cubit/note_item_cubit.dart';
 import 'package:note_app/model/note_model.dart';
 
 class CustomListTile extends StatelessWidget {
@@ -28,6 +30,7 @@ class CustomListTile extends StatelessWidget {
       trailing: IconButton(
         onPressed: () {
           notes.delete();
+          BlocProvider.of<NoteCubit>(context).feachAllNotes();
         },
         icon: const Icon(
           FontAwesomeIcons.trash,
