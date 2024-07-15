@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:note_app/cubits/add_note_cubit/add_note_states.dart';
@@ -21,7 +20,7 @@ class NoteBottomSheet extends StatelessWidget {
               BlocProvider.of<NoteCubit>(context).feachAllNotes();
               Navigator.pop(context);
             } else if (state is AddNoteFailure) {
-              print('edweve');
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.err.toString())));
             }
           },
           builder: (context, state) {
