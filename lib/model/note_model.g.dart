@@ -21,6 +21,7 @@ class NoteModelAdapter extends TypeAdapter<NoteModel> {
       subTitle: fields[1] as String,
       date: fields[2] as String,
       color: fields[3] as int,
+      msg: fields[4] as String,
     );
   }
 
