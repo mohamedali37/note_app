@@ -32,6 +32,7 @@ class _EditNoteBodyState extends State<EditNoteBody> {
               widget.notes.save();
               BlocProvider.of<NoteCubit>(context).feachAllNotes();
               Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Note edit')));
             },
             text: 'Edit Notes',
             icon: Icons.check,
