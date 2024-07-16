@@ -18,8 +18,8 @@ class NoteBottomSheet extends StatelessWidget {
           listener: (context, state) {
             if (state is AddNoteSuccess) {
               BlocProvider.of<NoteCubit>(context).feachAllNotes();
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Note added')));
               Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Note added')));
             } else if (state is AddNoteFailure) {
               Center(child: Text(state.err.toString()));
             }
