@@ -20,8 +20,8 @@ class NoteBottomSheet extends StatelessWidget {
             if (state is AddNoteSuccess) {
               BlocProvider.of<NoteCubit>(context).feachAllNotes();
               Navigator.pop(context);
-              controller.animateTo(
-                controller.position.maxScrollExtent, 
+              NoteListView.controller.animateTo(
+                NoteListView.controller.position.maxScrollExtent, 
                 duration: const Duration(seconds: 1), 
                 curve: Curves.fastOutSlowIn,
                 );

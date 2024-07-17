@@ -7,7 +7,7 @@ import 'package:note_app/widget/note_item.dart';
 
 class NoteListView extends StatelessWidget {
   const NoteListView({super.key});
-
+  static ScrollController controller = ScrollController();
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NoteCubit, NoteState>(
@@ -27,4 +27,3 @@ class NoteListView extends StatelessWidget {
     );
   }
 }
-ScrollController controller = ScrollController();
