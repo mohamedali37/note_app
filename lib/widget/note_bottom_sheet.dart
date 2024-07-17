@@ -4,6 +4,7 @@ import 'package:note_app/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:note_app/cubits/add_note_cubit/add_note_states.dart';
 import 'package:note_app/cubits/note_item_cubit/note_item_cubit.dart';
 import 'package:note_app/widget/note_form.dart';
+import 'package:note_app/widget/note_list_view.dart';
 
 class NoteBottomSheet extends StatelessWidget {
   const NoteBottomSheet({super.key});
@@ -19,6 +20,11 @@ class NoteBottomSheet extends StatelessWidget {
             if (state is AddNoteSuccess) {
               BlocProvider.of<NoteCubit>(context).feachAllNotes();
               Navigator.pop(context);
+              controller.animateTo(
+                controller.position.maxScrollExtent, 
+                duration: const Duration(seconds: 1), 
+                curve: Curves.fastOutSlowIn,
+                );
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Note added')));
             } else if (state is AddNoteFailure) {
               Center(child: Text(state.err.toString()));

@@ -16,6 +16,7 @@ class NoteListView extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 16),
           child: ListView.builder(
+              controller: controller,
               padding: EdgeInsets.zero,
               itemCount: notes.length,   //state is NoteSuccess? state.notes!.length : 0,
               itemBuilder: (context, index) {
@@ -26,3 +27,4 @@ class NoteListView extends StatelessWidget {
     );
   }
 }
+ScrollController controller = ScrollController();
