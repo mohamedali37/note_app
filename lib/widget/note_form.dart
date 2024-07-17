@@ -62,12 +62,7 @@ class _NoteFormState extends State<NoteForm> {
                 onTap: () {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
-                    var noteModel = NoteModel(
-                        title: title!,
-                        subTitle: subTitle!,
-                        date: formatDate,
-                        color: Colors.blue.value);
-                    BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+                    triggerBottomSheet(formatDate, context);
                   } else {
                     autoValidateMode = AutovalidateMode.always;
                     setState(() {});
@@ -82,5 +77,14 @@ class _NoteFormState extends State<NoteForm> {
         ],
       ),
     );
+  }
+
+  void triggerBottomSheet(String formatDate, BuildContext context) {
+    var noteModel = NoteModel(
+        title: title!,
+        subTitle: subTitle!,
+        date: formatDate,
+        color: Colors.blue.value);
+    BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
   }
 }
