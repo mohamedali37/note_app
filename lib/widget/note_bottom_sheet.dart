@@ -20,11 +20,7 @@ class NoteBottomSheet extends StatelessWidget {
             if (state is AddNoteSuccess) {
               BlocProvider.of<NoteCubit>(context).feachAllNotes();
               Navigator.pop(context);
-              NoteListView.controller.animateTo(
-                NoteListView.controller.position.maxScrollExtent, 
-                duration: const Duration(seconds: 1), 
-                curve: Curves.fastOutSlowIn,
-                );
+              animateToEndOfNoteList();
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Note added')));
             } else if (state is AddNoteFailure) {
               Center(child: Text(state.err.toString()));
@@ -38,5 +34,13 @@ class NoteBottomSheet extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void animateToEndOfNoteList() {
+    NoteListView.controller.animateTo(
+      NoteListView.controller.position.maxScrollExtent, 
+      duration: const Duration(seconds: 1), 
+      curve: Curves.fastOutSlowIn,
+      );
   }
 }
